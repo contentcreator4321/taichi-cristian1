@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academia de Tai Chi - Cristian</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(to bottom, #0f172a, #1e293b, #064e3b);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 1000;
+            background: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            background: #20ba5a;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
+            50% { box-shadow: 0 4px 30px rgba(37, 211, 102, 0.8); }
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.1;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .blob1 {
+            width: 400px;
+            height: 400px;
+            background: #10b981;
+            top: 10%;
+            left: 10%;
+        }
+
+        .blob2 {
+            width: 500px;
+            height: 500px;
+            background: #3b82f6;
+            bottom: 10%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, 30px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 1200px;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -2px;
+        }
+
+        .divider {
+            width: 128px;
+            height: 4px;
+            background: linear-gradient(to right, #34d399, #3b82f6);
+            margin: 0 auto 1.5rem;
+        }
+
+        .subtitle {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            color: #6ee7b7;
+            font-weight: 300;
+            margin-bottom: 3rem;
+        }
+
+        .hero-desc {
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            color: #d1d5db;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            line-height: 1.6;
+        }
+
+        .cta-btn {
+            background: linear-gradient(to right, #10b981, #059669);
+            color: white;
+            padding: 20px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.25rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 10px 40px rgba(16, 185, 129, 0.3);
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 50px rgba(16, 185, 129, 0.5);
+        }
+
+        .hero-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 4rem;
+            color: #d1d5db;
+        }
+
+        .hero-info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        .scroll-indicator-inner {
+            width: 24px;
+            height: 40px;
+            border: 2px solid #34d399;
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            padding-top: 8px;
+        }
+
+        .scroll-dot {
+            width: 4px;
+            height: 12px;
+            background: #34d399;
+            border-radius: 2px;
+        }
+
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: clamp(2.5rem, 6vw, 3.5rem);
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .benefit-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .benefit-card:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 60px rgba(16, 185, 129, 0.2);
+        }
+
+        .benefit-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 1rem;
+            color: #34d399;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-card p {
+            color: #d1d5db;
+            line-height: 1.6;
+        }
+
+        .classes-section {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .classes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .class-card {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(59, 130, 246, 0.1));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 2rem;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .class-card.presencial {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(16, 185, 129, 0.1));
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+
+        .class-card:hover {
+            transform: scale(1.05);
+        }
+
+        .class-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .class-icon {
+            background: #3b82f6;
+            padding: 0.75rem;
+            border-radius: 0.75rem;
+        }
+
+        .class-card.presencial .class-icon {
+            background: #10b981;
+        }
+
+        .class-header h3 {
+            font-size: 1.875rem;
+            margin: 0;
+        }
+
+        .class-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            color: #e5e7eb;
+        }
+
+        .class-detail {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .class-details p {
+            color: #d1d5db;
+            margin-top: 1rem;
+            line-height: 1.6;
+        }
+
+        .about-section {
+            text-align: center;
+        }
+
+        .about-content {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 2rem;
+            padding: 3rem;
+        }
+
+        .instructor-avatar {
+            width: 128px;
+            height: 128px;
+            background: linear-gradient(135deg, #34d399, #3b82f6);
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: 700;
+        }
+
+        .about-content p {
+            font-size: 1.25rem;
+            color: #d1d5db;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .quote {
+            font-size: 1.125rem;
+            color: #6ee7b7;
+            font-style: italic;
+        }
+
+        .location-section {
+            background: rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .location-content {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 2rem;
+            padding: 2rem;
+        }
+
+        .location-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .location-header h3 {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+
+        .final-cta {
+            text-align: center;
+            padding: 6rem 2rem;
+        }
+
+        .final-cta h2 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 1.5rem;
+        }
+
+        .final-cta p {
+            font-size: 1.25rem;
+            color: #d1d5db;
+            margin-bottom: 3rem;
+        }
+
+        .final-cta-btn {
+            background: linear-gradient(to right, #10b981, #059669);
+            color: white;
+            padding: 24px 48px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 10px 40px rgba(16, 185, 129, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .final-cta-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 50px rgba(16, 185, 129, 0.5);
+        }
+
+        footer {
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: #9ca3af;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        .icon {
+            width: 24px;
+            height: 24px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .icon-lg {
+            width: 48px;
+            height: 48px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            section {
+                padding: 4rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- WhatsApp Button -->
+    <button class="whatsapp-btn" onclick="openWhatsApp()">
+        <svg class="icon" viewBox="0 0 24 24">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+    </button>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="bg-blob blob1"></div>
+        <div class="bg-blob blob2"></div>
+        
+        <div class="hero-content">
+            <h1>Tai Chi</h1>
+            <div class="divider"></div>
+            <p class="subtitle">con Cristian</p>
+            
+            <p class="hero-desc">
+                Encuentra equilibrio, paz interior y fortaleza a través del arte ancestral del Tai Chi
+            </p>
+
+            <button class="cta-btn" onclick="openWhatsApp()">
+                Comienza Tu Práctica →
+            </button>
+
+            <div class="hero-info">
+                <div class="hero-info-item">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                    <span>Principiantes e Intermedios</span>
+                </div>
+                <div class="hero-info-item">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                        <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                    <span>Bogotá - CC Vía Libre</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <div class="scroll-indicator-inner">
+                <div class="scroll-dot"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Benefits Section -->
+    <section>
+        <h2>¿Por Qué Tai Chi?</h2>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <svg class="icon icon-lg benefit-icon" viewBox="0 0 24 24">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                </svg>
+                <h3>Salud Integral</h3>
+                <p>Mejora la circulación, fortalece el sistema inmune y reduce la presión arterial</p>
+            </div>
+            
+            <div class="benefit-card">
+                <svg class="icon icon-lg benefit-icon" viewBox="0 0 24 24">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                </svg>
+                <h3>Energía Vital</h3>
+                <p>Aumenta tu energía, flexibilidad y coordinación de manera natural</p>
+            </div>
+            
+            <div class="benefit-card">
+                <svg class="icon icon-lg benefit-icon" viewBox="0 0 24 24">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+                <h3>Paz Mental</h3>
+                <p>Reduce el estrés, ansiedad y mejora la concentración y claridad mental</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Classes Section -->
+    <section class="classes-section">
+        <h2>Modalidades de Clase</h2>
+        <div class="classes-grid">
+            <div class="class-card">
+                <div class="class-header">
+                    <div class="class-icon">
+                        <svg class="icon" viewBox="0 0 24 24" style="stroke: white;">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                        </svg>
+                    </div>
+                    <h3>Online</h3>
+                </div>
+                <div class="class-details">
+                    <div class="class-detail">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                        <span>Miércoles 7:30 PM</span>
+                    </div>
+                    <div class="class-detail">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                        <span>Principiantes e Intermedios</span>
+                    </div>
+                    <p>Practica desde la comodidad de tu hogar con sesiones en vivo e interactivas</p>
+                </div>
+            </div>
+
+            <div class="class-card presencial">
+                <div class="class-header">
+                    <div class="class-icon">
+                        <svg class="icon" viewBox="0 0 24 24" style="stroke: white;">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                    </div>
+                    <h3>Presencial</h3>
+                </div>
+                <div class="class-details">
+                    <div class="class-detail">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                        <span>Miércoles 6:30 PM</span>
+                    </div>
+                    <div class="class-detail">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                        </svg>
+                        <span>CC Vía Libre, Bogotá</span>
+                    </div>
+                    <p>Experiencia completa con corrección personalizada y energía grupal</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <h2>Conoce a Cristian</h2>
+        <div class="about-content">
+            <div class="instructor-avatar">C</div>
+            <p>
+                Instructor certificado de Tai Chi con años de experiencia compartiendo esta disciplina milenaria. 
+                Mi objetivo es guiarte en un viaje de autodescubrimiento, equilibrio y bienestar a través de movimientos 
+                conscientes y respiración.
+            </p>
+            <p class="quote">
+                "El Tai Chi no es solo movimiento, es meditación en acción"
+            </p>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section class="location-section">
+        <h2>Ubicación</h2>
+        <div class="location-content">
+            <div class="location-header">
+                <svg class="icon" viewBox="0 0 24 24" style="color: #34d399; width: 32px; height: 32px;">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                </svg>
+                <h3>Centro Comercial Vía Libre</h3>
+            </div>
+            <p style="font-size: 1.25rem; color: #d1d5db; margin-bottom: 1rem;">Bogotá, Colombia</p>
+            <p style="color: #9ca3af;">Clases presenciales todos los miércoles a las 6:30 PM</p>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <h2>Inicia Tu Transformación Hoy</h2>
+        <p>Da el primer paso hacia una vida más equilibrada y consciente</p>
+        <button class="final-cta-btn" onclick="openWhatsApp()">
+            <svg class="icon" viewBox="0 0 24 24">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            Contactar por WhatsApp
+        </button>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Academia de Tai Chi con Cristian</p>
+        <p style="font-size: 0.875rem;">Bogotá, Colombia • CC Vía Libre</p>
+        <p style="font-size: 0.75rem; margin-top: 1rem; color: #6b7280;">
+            © 2024 Todos los derechos reservados
+        </p>
+    </footer>
+
+    <script>
+        function openWhatsApp() {
+            const number = "573001231234";
+            const message = "Hola Cristian, me interesa conocer más sobre las clases de Tai Chi";
+            const url = `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>e
